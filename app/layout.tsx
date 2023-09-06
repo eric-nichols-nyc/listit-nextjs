@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Topbar from '@/components/Topbar'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Sidenav from '@/components/Sidenav'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ToastContainer
           position="bottom-left"
-          autoClose={1000}
+          autoClose={5000}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -34,8 +35,12 @@ export default function RootLayout({
           theme="dark"
         />
         <Topbar />
-        <Header />
-        {children}
+        <div className="flex maincontent">
+          <Sidenav />
+          <div>
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   )

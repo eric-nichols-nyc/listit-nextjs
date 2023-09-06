@@ -7,3 +7,8 @@ interface Task {
   draggableProps?: any;
   draggableHandleProps?: any;
 }
+
+declare module 'preline' {
+  const plugin: any;
+  export default plugin;
+}

@@ -14,8 +14,6 @@ import {getNewCardOrder} from '@/utils/getItemOrder'
 import { toast } from 'react-toastify';
 
 const AddtaskForm = () => {
-  const notify = () => toast("Wow so easy!");
-
   const [tasks, addTask] = useTaskStore(state => [
     state.tasks,
     state.addTask,
@@ -55,7 +53,12 @@ const AddtaskForm = () => {
     <div className="
     border-t-2
     w-[350px] 
-    p-2 flex items-center cursor-pointer hover:text-red-600 bg-white
+    p-2 
+    flex 
+    items-center 
+    cursor-pointer 
+    hover:text-red-600 
+    bg-white
     ">
       {
         showForm ? (
@@ -73,7 +76,6 @@ const AddtaskForm = () => {
                   className="border border-gray-200 p-2 w-full text-sm mt-2"
                   placeholder="Description..."
                   onChange={(e) => setTask({ ...task, description: e.target.value })}
-
                 />
               </div>
             </CardContent>
@@ -96,8 +98,9 @@ const AddtaskForm = () => {
         )
           :
           <div 
-          onClick={() => setShowForm(true)}
-          className='flex items-center cursor-pointer'>
+            onClick={() => setShowForm(true)}
+            className='flex items-center cursor-pointer'
+          >
             <GrAdd className="inline-block mr-2" />
             <div>
               Add task

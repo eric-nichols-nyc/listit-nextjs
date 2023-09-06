@@ -7,6 +7,13 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { AiOutlineCalendar } from "react-icons/ai"
 import { useTaskStore } from "@/store/taskStore";
 import { toast } from "react-toastify";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { VscSettings } from 'react-icons/vsc'
+import { TfiMore } from 'react-icons/tfi'
 
 const Task = ({
   id,
@@ -24,7 +31,7 @@ const Task = ({
   return (
     <Card
       id={id}
-      className="mb-2"
+      className="mb-2 relative"
       {...draggableProps}
       {...draggableHandleProps}
       ref={innerRef}
@@ -41,11 +48,9 @@ const Task = ({
                 removeTask(id)
               }, 300)
             }}
-          />
+          />  
           <div className="flex flex-col ml-2">
-            <div>
               {name}
-            </div>
             <div className="text-sm">
               {description}
             </div>
@@ -58,6 +63,14 @@ const Task = ({
               </div>
             </div>
           </div>
+        </div>
+        <div className="absolute right-2">
+          <Popover>
+            <PopoverTrigger>
+              <TfiMore />
+            </PopoverTrigger>
+            <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
         </div>
       </CardContent>
     </Card>
