@@ -1,46 +1,52 @@
 "use client";
-import React from 'react'
-import Task from './Task'
-import ColumnFooter from '@/components/ColumnFooter'
-
+import {useEffect} from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { getNewCardOrder } from '@/utils/getItemOrder'
+import Task from './Task';
+import { getNewCardOrder } from '@/utils/getItemOrder';
+import { useTaskStore } from '@/store/taskStore';
 
 const items = [
   {
     id: '1',
     name: 'task 1',
-    order: 'c'
+    order: 'c',
+    description: 'This is my task description'
   },
   {
     id: '2',
     name: 'task 2',
-    order: 'f'
+    order: 'f',
+    description: 'This is my task description'
   },
   {
     id: '3',
     name: 'task 3',
-    order: 'h'
+    order: 'h',
+    description: 'This is my task description'
   },
   {
     id: '4',
     name: 'task 4',
-    order: 'k'
+    order: 'k',
+    description: 'This is my task description'
   },
   {
     id: '5',
     name: 'task 5',
-    order: 'm'
+    order: 'm',
+    description: 'This is my task description'
   },
   {
     id: '6',
     name: 'task 6',
-    order: 'p'
+    order: 'p',
+    description: 'This is my task description'
   },
   {
     id: '7',
     name: 'task 7',
-    order: 'r'
+    order: 'r',
+    description: 'This is my task description'
   },
   {
     id: '8',
@@ -50,26 +56,36 @@ const items = [
 ]
 
 const Column = () => {
+  const [tasks, setTasks, addTask, removeTask, updateTask] = useTaskStore(state =>
+    [
+      state.tasks,
+      state.setTasks,
+      state.addTask,
+      state.removeTask,
+      state.updateTask
+    ])
 
-  const [cards, setCards] = React.useState(items.sort((a, b) => a.order.localeCompare(b.order)))
-  let maxH = 660;
-
+  // setTasks(items)
+  useEffect(() => {
+    setTasks(items)
+  }, [])
+  
 
   const onDragEnd = (result: any) => {
     // 1. reorder our column
-    const newColumns = [...cards]
+    const newColumns = [...tasks]
     const target = newColumns[result.source.index]
     console.log('target', target)
     // 2. get new order
     const newOrder = getNewCardOrder(
-      cards,
+      tasks,
       result.source.index,
       result.destination.index
     )
     // 3. assign new order to column
-    if(!newOrder) throw new Error('newOrder is undefined')  
+    if (!newOrder) throw new Error('newOrder is undefined')
     target.order = newOrder
-    setCards(newColumns.sort((a, b) => a.order.localeCompare(b.order)))
+    setTasks(newColumns.sort((a, b) => a.order.localeCompare(b.order)))
   }
 
   return (
@@ -80,30 +96,32 @@ const Column = () => {
         >
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {
-                   cards.map((item:any, index:number) => (
-                      <Draggable key={item.id} draggableId={item.id} index={index}>
-                        {(provided, snapshot) => (
-                          <Task 
-                            id={item.id} 
-                            key={item.id} 
-                            name={item.name} 
-                            innerRef={provided.innerRef}
-                            draggableProps={provided.draggableProps}
-                            draggableHandleProps={provided.dragHandleProps}
-                          />
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {
+                  tasks.map((item: any, index: number) => (
+                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                      {(provided, snapshot) => (
+                        <Task
+                          id={item.id}
+                          key={item.id}
+                          name={item.name}
+                          description={item.description}
+                          order={item.order}
+                          innerRef={provided.innerRef}
+                          draggableProps={provided.draggableProps}
+                          draggableHandleProps={provided.dragHandleProps}
+                        />
 
-                        )}
-                      </Draggable>
-                    ))
-                  }
+                      )}
+                    </Draggable>
+                  ))
+                }
                 {provided.placeholder}
-                </div>
-              )}
+              </div>
+            )}
           </Droppable>
         </DragDropContext>
 

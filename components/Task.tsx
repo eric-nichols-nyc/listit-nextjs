@@ -2,10 +2,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { AiOutlineCalendar } from "react-icons/ai"
@@ -14,14 +10,15 @@ import { AiOutlineCalendar } from "react-icons/ai"
 const Task = ({
   id,
   name,
+  description,
   innerRef,
   draggableProps,
   draggableHandleProps,
 }: Task) => {
   return (
-    <Card 
-    id={id} 
-    className="mb-2"
+    <Card
+      id={id}
+      className="mb-2"
       {...draggableProps}
       {...draggableHandleProps}
       ref={innerRef}
@@ -31,14 +28,21 @@ const Task = ({
       >
         <div className="flex items-center">
           <Checkbox />
-          <div className="ml-2">
-            {name}
-          </div>
-        </div>
-        <div className="flex mt-2 text-xs">
-          <AiOutlineCalendar />
-          <div className="ml-1">
-            Today
+          <div className="flex flex-col ml-2">
+            <div>
+              {name}
+            </div>
+            <div className="text-sm">
+              {description}
+            </div>
+            <div className="flex mt-2 text-xs">
+              <AiOutlineCalendar 
+              size={14}
+              />
+              <div className="ml-1">
+                Today
+              </div>
+            </div>
           </div>
         </div>
       </CardContent>
