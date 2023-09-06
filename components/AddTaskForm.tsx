@@ -11,8 +11,11 @@ import { Button } from "@/components/ui/button"
 import { AiOutlineClose } from 'react-icons/ai';
 import { useTaskStore } from '@/store/taskStore';
 import {getNewCardOrder} from '@/utils/getItemOrder'
+import { toast } from 'react-toastify';
 
 const AddtaskForm = () => {
+  const notify = () => toast("Wow so easy!");
+
   const [tasks, addTask] = useTaskStore(state => [
     state.tasks,
     state.addTask,
@@ -45,6 +48,7 @@ const AddtaskForm = () => {
     }
     addTask(t)
     setShowForm(false)
+    toast("1 task added to today");
   }
 
   return (

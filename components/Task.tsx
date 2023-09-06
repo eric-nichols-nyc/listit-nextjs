@@ -5,7 +5,8 @@ import {
 } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { AiOutlineCalendar } from "react-icons/ai"
-
+import { useTaskStore } from "@/store/taskStore";
+import { toast } from "react-toastify";
 
 const Task = ({
   id,
@@ -15,6 +16,11 @@ const Task = ({
   draggableProps,
   draggableHandleProps,
 }: Task) => {
+
+  const [removeTask] = useTaskStore(state => [
+    state.removeTask,
+  ]);
+
   return (
     <Card
       id={id}
@@ -26,8 +32,16 @@ const Task = ({
       <CardContent
         className="p-3 pb-3 pt-3 flex flex-col"
       >
-        <div className="flex items-center">
-          <Checkbox />
+        <div className="flex items-start">
+          <Checkbox 
+            className="h-5 w-5 mt-1 rounded-full transition hover:bg-gray-200 hover:scale-125"
+            onCheckedChange={() => {
+              setTimeout(() => {
+                toast("1 task completed");
+                removeTask(id)
+              }, 300)
+            }}
+          />
           <div className="flex flex-col ml-2">
             <div>
               {name}
@@ -35,7 +49,7 @@ const Task = ({
             <div className="text-sm">
               {description}
             </div>
-            <div className="flex mt-2 text-xs">
+            <div className="flex  text-xs">
               <AiOutlineCalendar 
               size={14}
               />

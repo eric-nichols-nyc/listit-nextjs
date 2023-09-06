@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Task from './Task';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import { useTaskStore } from '@/store/taskStore';
+import { toast } from 'react-toastify';
 
 const items = [
   {
@@ -68,14 +69,12 @@ const Column = () => {
   // setTasks(items)
   useEffect(() => {
     setTasks(items)
-  }, [])
-  
+  }, [setTasks])
 
   const onDragEnd = (result: any) => {
     // 1. reorder our column
     const newColumns = [...tasks]
     const target = newColumns[result.source.index]
-    console.log('target', target)
     // 2. get new order
     const newOrder = getNewCardOrder(
       tasks,
