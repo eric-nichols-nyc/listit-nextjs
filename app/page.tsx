@@ -6,22 +6,17 @@ import Header from '@/components/Header';
 export default function Home() {
   const maxH = 660;
 
-  if(typeof window === 'undefined') return null;
-
-  const contentW = window.innerWidth - 350;
-
   return (
       <div className="
+        rightcontent
         flex 
         flex-col 
-        w-full 
         px-16
         py-8
-      " 
-      style={{width: contentW}}>
+        bg-gray-300
+      "
+      >
       <Header />
-
-        <div>
           <div className="flex ">
             <div className="w-[350px] relative">
               <div className="flex mb-2 relative border-b ">Sep 5 - Today 8</div>
@@ -35,7 +30,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
       </div>
   )
 }

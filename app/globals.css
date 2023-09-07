@@ -80,3 +80,6 @@
 .columncontainer{
   height: calc(100vh - 200px);
 }
+.rightcontent{
+  width: calc(100vw - 320px)
+}

@@ -5,3 +5,7 @@ ADD A TASK
 
 REMOVE A TASK
   CARD => checkbox => store => removeTask({id}) => setTask => Column
+
+
+  EDIT TASK 
+  click on edit from overflow menu => toggle task state from info to form
