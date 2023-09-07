@@ -84,7 +84,7 @@ const Column = () => {
     // 3. assign new order to column
     if (!newOrder) throw new Error('newOrder is undefined')
     target.order = newOrder
-    setTasks(newColumns.sort((a, b) => a.order.localeCompare(b.order)))
+    setTasks(newColumns.sort((a, b) => a.order!.localeCompare(b.order!)))
   }
 
   return (
