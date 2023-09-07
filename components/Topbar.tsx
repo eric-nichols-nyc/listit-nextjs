@@ -28,7 +28,7 @@ const Header = () => {
             color="white"
           />
           <Input
-            className="mr-3"
+            className="mr-3 w-[300px]"
             placeholder="Search"
            />
         </div>

@@ -26,8 +26,8 @@ export const Sidenav = () => {
           dark:border-gray-700 
           dark:text-white">
           <Button className="w-full gap-2 justify-start" variant="outline">
-            <BsInbox />
-            Inbox
+            <MdOutlineCalendarToday />
+            Today
           </Button>
         </li>
       </ul>

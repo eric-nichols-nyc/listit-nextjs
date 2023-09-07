@@ -1,16 +1,14 @@
 "use client";
 import Column from '@/components/Column'
 import ColumnFooter from '@/components/AddTaskForm'
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 
 export default function Home() {
   const maxH = 660;
-  const contentW = window.innerWidth - 350;
 
-  useEffect(() => {
-    import('preline')
-  }, [])
+  if(typeof window === 'undefined') return null;
+
+  const contentW = window.innerWidth - 350;
 
   return (
       <div className="
