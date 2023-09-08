@@ -6,6 +6,7 @@ import Topbar from '@/components/Topbar'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Sidenav from '@/components/Sidenav'
+import Home from '@/components/Home'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         <div className="flex maincontent">
           <Sidenav />
           <div>
+            <Home />
             {children}
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react'
+import {useRouter} from 'next/navigation'
 import {
   Card,
   CardContent,
@@ -109,6 +110,7 @@ const Task = ({
   draggableProps,
   draggableHandleProps,
 }: Task) => {
+  const router = useRouter()
   // global state
   const [tasks, removeTask, updateTask] = useTaskStore(state => [
     state.tasks,
@@ -143,7 +145,9 @@ const Task = ({
         onClick={() => { }}
       />)
     } else {
-      return (<div key={index}>
+      return (
+      <div key={index}
+      >
         <div className="flex flex-col text-sm">
           <div>{item.title}</div>
           <div className="flex">
@@ -185,6 +189,7 @@ const Task = ({
 
   return (
     <Card
+    onClick={() => router.push(`/task/${id}`)}
       id={id}
       className="mb-2 relative"
       {...draggableProps}
