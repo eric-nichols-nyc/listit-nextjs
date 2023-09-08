@@ -4,13 +4,101 @@ import {
   Card,
   CardContent,
 } from "@/components/ui/card"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Checkbox } from "@/components/ui/checkbox"
-import { AiOutlineCalendar } from "react-icons/ai"
+import { AiOutlineCalendar, AiOutlineCopy, AiOutlineDelete } from "react-icons/ai"
 import { useTaskStore } from "@/store/taskStore";
 import { toast } from "react-toastify";
-import { Button } from "./ui/button";
 import PopOver from "./Popover";
 import TaskForm from './TaskForm';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { BsFlagFill } from 'react-icons/bs';
+import LIButton from '@/components/Button'
+import { Button } from './ui/button';
+import { IconType } from 'react-icons';
+import Icon from '@/components/Icon';
+
+const data = [
+  {
+    id: 'button',
+    type: 'button',
+    title: 'Edit',
+    icon: AiOutlineEdit,
+  },
+  {
+    id: "duedate",
+    type: 'icons',
+    title: 'Due Date',
+    icon: [
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'today'
+      },
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'tomorrow'
+      },
+      {
+        name: BsFlagFill,
+        priority: 'low',
+        color: 'red',
+        tip: 'next week'
+      },
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'more'
+      },
+    ]
+  },
+  {
+    id: "priority",
+    type: 'icons',
+    title: 'Priority',
+    icon: [
+      {
+        name: BsFlagFill,
+        priority: 'low',
+        color: 'red',
+        tip: 'high'
+      },
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'medium'
+      },
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'low'
+      },
+      {
+        name: BsFlagFill,
+        color: 'red',
+        tip: 'none'
+      },
+    ]
+  },
+  {
+    id: "duplicate",
+    type: 'button',
+    title: 'Duplicate',
+    icon: AiOutlineCopy
+  },
+  {
+    id: "delete",
+    type: 'button',
+    title: 'Delete',
+    icon: AiOutlineDelete
+  }
+]
 
 // and send in props
 const Task = ({
@@ -35,7 +123,7 @@ const Task = ({
     setShowForm(false)
   }
 
-  const updateCurrentTask = (name: string, description:string) => {
+  const updateCurrentTask = (name: string, description: string) => {
     const t = {
       id: id,
       name: name,
@@ -46,30 +134,54 @@ const Task = ({
     toast("1 task updated");
   }
 
-  const bodycontent = (
-  <>
-    <Button 
-      onClick={() => setShowForm(true)}
-      className="w-full gap-2 justify-start rounded-none" 
-      variant="ghost"
-    >
-      Edit
-    </Button>
-    <Button
-        onClick={() => removeTask(id)  }
-        className="w-full gap-2 justify-start rounded-none" variant="ghost"
-    >
-      Delete
-    </Button>
-  </>)
+  const bodycontent = data.map((item, index) => {
+    if (item.type === 'button') {
+      return (<LIButton
+        key={index}
+        label={item.title}
+        icon={item.icon}
+        onClick={() => { }}
+      />)
+    } else {
+      return (<div key={index}>
+        <div className="flex flex-col text-sm">
+          <div>{item.title}</div>
+          <div className="flex">
+            {
+              item.icon.map((ic: any) => (
+                <div key={index}>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Icon
+                          key={ic.tip}
+                          icon={ic.name}
+                          color={ic.color}
+                          tip={ic.tip}
+                        />      </TooltipTrigger>
+                      <TooltipContent>
+                        {ic.tip}
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
 
-  if(showForm) return <TaskForm
+              ))
+            }
+          </div>
+
+        </div>
+      </div>)
+    }
+  })
+
+  if (showForm) return <TaskForm
     title={name}
     description={description}
     disable={false}
     onSubmit={updateCurrentTask}
     onClose={onClose}
-   />
+  />
 
   return (
     <Card

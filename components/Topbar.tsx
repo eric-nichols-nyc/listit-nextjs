@@ -18,16 +18,15 @@ const Header = () => {
       ">
         <div className="flex flex-1 gap-2 items-center">
           <GiHamburgerMenu
-            className="cursor-pointer"
             size={IconSize}
             color="white"
            />
           <AiOutlineHome
-            className="cursor-pointer"
-            size={IconSize} 
+              size={IconSize} 
             color="white"
           />
           <Input
+            disabled
             className="mr-3 w-[300px]"
             placeholder="Search"
            />

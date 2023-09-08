@@ -10,7 +10,7 @@ import { TfiMore } from 'react-icons/tfi'
 
 interface PopoverTriggerProps {
   header?: React.ReactElement,
-  body: React.ReactElement,
+  body: React.ReactElement[],
   footer?: React.ReactElement,
 }
 
