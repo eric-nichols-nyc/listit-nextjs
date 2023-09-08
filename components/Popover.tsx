@@ -21,7 +21,7 @@ const PopOver = ({
 }: PopoverTriggerProps) => {
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger onClick={(e) => {e.stopPropagation() }}>
         <TfiMore />
       </PopoverTrigger>
       <PopoverContent>

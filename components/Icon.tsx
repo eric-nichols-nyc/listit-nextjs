@@ -10,15 +10,30 @@ interface IconProps {
   icon: IconType,
   color: string,
   tip: string,
+  selected?: boolean,
+  onClick: () => void
 }
 
 const Icon = ({
   icon: Icon,
   color,
   tip,
+  onClick,
+  selected,
 }: IconProps) => {
+
+  const clicked = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    onClick()
+  }
   return (
-    <div className="p-2">
+    <div 
+    onClick={(e) => clicked(e)}
+    className={
+      `p-2
+      ${selected && 'border'}
+      `
+    }>
       <Icon
         className="mr-2"
         color={color}

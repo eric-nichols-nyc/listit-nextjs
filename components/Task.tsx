@@ -12,94 +12,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Checkbox } from "@/components/ui/checkbox"
-import { AiOutlineCalendar, AiOutlineCopy, AiOutlineDelete } from "react-icons/ai"
+import { AiOutlineCalendar } from "react-icons/ai"
 import { useTaskStore } from "@/store/taskStore";
 import { toast } from "react-toastify";
 import PopOver from "./Popover";
 import TaskForm from './TaskForm';
-import { AiOutlineEdit } from 'react-icons/ai';
-import { BsFlagFill } from 'react-icons/bs';
 import LIButton from '@/components/Button'
-import { Button } from './ui/button';
-import { IconType } from 'react-icons';
 import Icon from '@/components/Icon';
+import { taskData } from '@/constants';
 
-const data = [
-  {
-    id: 'button',
-    type: 'button',
-    title: 'Edit',
-    icon: AiOutlineEdit,
-  },
-  {
-    id: "duedate",
-    type: 'icons',
-    title: 'Due Date',
-    icon: [
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'today'
-      },
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'tomorrow'
-      },
-      {
-        name: BsFlagFill,
-        priority: 'low',
-        color: 'red',
-        tip: 'next week'
-      },
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'more'
-      },
-    ]
-  },
-  {
-    id: "priority",
-    type: 'icons',
-    title: 'Priority',
-    icon: [
-      {
-        name: BsFlagFill,
-        priority: 'low',
-        color: 'red',
-        tip: 'high'
-      },
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'medium'
-      },
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'low'
-      },
-      {
-        name: BsFlagFill,
-        color: 'red',
-        tip: 'none'
-      },
-    ]
-  },
-  {
-    id: "duplicate",
-    type: 'button',
-    title: 'Duplicate',
-    icon: AiOutlineCopy
-  },
-  {
-    id: "delete",
-    type: 'button',
-    title: 'Delete',
-    icon: AiOutlineDelete
-  }
-]
 
 // and send in props
 const Task = ({
@@ -136,20 +57,44 @@ const Task = ({
     toast("1 task updated");
   }
 
-  const bodycontent = data.map((item, index) => {
+  const changeTaskByType = (name:string) => {
+    switch(name){
+      case 'edit':
+        setShowForm(true)
+        break;
+      case 'delete':
+        removeTask(id)
+        toast("1 task deleted");
+        break;
+      default:
+        break;
+    }
+    if (name === 'edit') {
+      setShowForm(true)
+    } else if (name === 'delete') {
+      removeTask(id)
+      toast("1 task deleted");
+    }
+  }
+
+  const bodycontent = taskData.map((item, index) => {
     if (item.type === 'button') {
       return (<LIButton
-        key={index}
+        key={item.id}
+        id={item.id}
         label={item.title}
         icon={item.icon}
-        onClick={() => { }}
+        disabled={item.disabled}
+        onClick={changeTaskByType}
       />)
     } else {
       return (
-      <div key={index}
+      <div 
+      key={index}
+      className="py-1 border-b"
       >
         <div className="flex flex-col text-sm">
-          <div>{item.title}</div>
+          <div className="text-xs">{item.title}</div>
           <div className="flex">
             {
               item.icon.map((ic: any) => (
@@ -162,7 +107,10 @@ const Task = ({
                           icon={ic.name}
                           color={ic.color}
                           tip={ic.tip}
-                        />      </TooltipTrigger>
+                          selected={ic.selected}
+                          onClick={() => { }}
+                        />      
+                      </TooltipTrigger>
                       <TooltipContent>
                         {ic.tip}
                       </TooltipContent>
@@ -187,9 +135,13 @@ const Task = ({
     onClose={onClose}
   />
 
+  const gotoTask = (e:any) => {
+    e.stopPropagation()
+    router.push(`/task/${id}`)
+  }
+
   return (
     <Card
-    onClick={() => router.push(`/task/${id}`)}
       id={id}
       className="mb-2 relative"
       {...draggableProps}
@@ -209,7 +161,9 @@ const Task = ({
               }, 300)
             }}
           />
-          <div className="flex flex-col ml-2">
+          <div 
+            onClick={(e) => gotoTask(e)}
+            className="flex flex-col ml-2">
             {name}
             <div className="text-sm">
               {description}

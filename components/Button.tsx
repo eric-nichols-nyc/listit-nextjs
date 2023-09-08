@@ -4,27 +4,37 @@ import {IconType} from 'react-icons'
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text',
+  id: string;
   label: string,
-  diisabled?: boolean,
+  disabled?: boolean,
   icon?:IconType,
-  onClick:(e:React.MouseEvent<HTMLButtonElement>) => void,
+  onClick:(id:string) => void,
 }
 
 const LIButton = ({
-  diisabled,
+  disabled,
   label,
+  id,
   onClick,
   icon: Icon,
 }:ButtonProps) => {
+
+  const clicked = (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    onClick(id)
+  }
+
   return (
     <Button
+    variant="ghost"
     className="
       justify-start
        w-full
        rounded-none
+       my-1
     "
-      disabled={diisabled}
-      onClick={onClick}
+      disabled={disabled}
+      onClick={clicked}
     >
       {
         Icon && (
