@@ -2,9 +2,11 @@
 import Column from '@/components/Column'
 import ColumnFooter from '@/components/AddTaskForm'
 import Header from '@/components/Header';
+import { useTaskStore } from '@/store/taskStore';
+import {format} from 'date-fns'
 
 export default function Home() {
-  const maxH = 660;
+  const [tasks] = useTaskStore(state => [state.tasks, state.addTask])
 
   return (
     <div className="
@@ -18,7 +20,7 @@ export default function Home() {
       <Header />
       <div className="flex">
         <div className="w-full relative">
-          <div className="flex relative">Sep 5 - Today 8</div>
+          <div className="flex relative text-sm font-semibold">{format(new Date(), 'MMM-dd')} - Today ({tasks.length})</div>
           <div
             className={`relative columncontainer w-full overflow-y-scroll pt-5`}
             style={{ maxHeight: 'none' }}>

@@ -1,6 +1,6 @@
 import Dropdown from "./Dropdown"
+import { format } from 'date-fns'
 
-import { VscSettings } from 'react-icons/vsc'
 const Header = () => {
   return (
     <div>
@@ -8,10 +8,11 @@ const Header = () => {
       className="
       flex
       justify-between
+      pb-10
       ">
         <div>
           <span className="font-semibold text-lg">Today </span>
-          <span className="text-sm">Tue Sep 5</span>
+          <span className="text-sm">{format(new Date(), 'eee-MMM-dd')}</span>
         </div>
         <Dropdown
           label={'view'}
