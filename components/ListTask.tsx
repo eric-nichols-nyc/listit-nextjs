@@ -30,7 +30,7 @@ const borders = {
 }
 
 // and send in props
-const Task = ({
+const ListTask = ({
   id,
   name,
   description,
@@ -239,4 +239,4 @@ const Task = ({
   )
 }
 
-export default Task
+export default ListTask

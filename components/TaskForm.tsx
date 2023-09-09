@@ -32,16 +32,22 @@ const TaskForm = ({
   onClose
 }:TaskFormProps) => {
   console.log(onSubmit)
-  // global state
-  const [tasks, addTask] = useTaskStore(state => [
-    state.tasks,
-    state.addTask,
-  ]);
+
   // local state
   const [task, setTask] = useState({
     name: title || '',
     description: description || '',
   })
+
+
+  const [disabled, setDisabled] = useState(true)
+  useEffect(()=> {
+    if(task.name.length > 0) {
+      setDisabled(false)
+    }else{
+      setDisabled(true)
+    }
+  },[task.name])
 
   return (
     <Card>
@@ -72,7 +78,7 @@ const TaskForm = ({
             />
           </Button>
           <Button
-            disabled={disable}
+            disabled={disabled}
             onClick={() => onSubmit(task.name, task.description)}
             variant="destructive"
           >

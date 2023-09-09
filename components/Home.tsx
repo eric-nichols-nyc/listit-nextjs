@@ -19,7 +19,7 @@ export default function Home() {
       <Header />
       <div className="flex ">
         <div className="w-[350px] relative">
-          <div className="flex mb-2 relative border-b ">Sep 5 - Today 8</div>
+          <div className="flex relative border-b ">Sep 5 - Today 8</div>
           <div
             className={`relative columncontainer w-full overflow-y-scroll pb-16`}
             style={{ maxHeight: maxH }}>

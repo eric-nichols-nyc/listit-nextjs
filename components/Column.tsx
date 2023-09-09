@@ -1,7 +1,7 @@
 "use client";
 import {useEffect} from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import Task from './Task';
+import ListTask from './ListTask';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import { useTaskStore } from '@/store/taskStore';
 import { toast } from 'react-toastify';
@@ -103,7 +103,7 @@ const Column = () => {
                   tasks.map((item: any, index: number) => (
                     <Draggable key={item.id} draggableId={item.id} index={index}>
                       {(provided, snapshot) => (
-                        <Task
+                        <ListTask
                           id={item.id}
                           key={item.id}
                           name={item.name}

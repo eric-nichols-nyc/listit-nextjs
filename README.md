@@ -9,3 +9,8 @@ REMOVE A TASK
 
   EDIT TASK 
   click on edit from overflow menu => toggle task state from info to form
+
+  PRIORITY
+
+  set priority in oveflow menu and reflect color on checkbox
+  

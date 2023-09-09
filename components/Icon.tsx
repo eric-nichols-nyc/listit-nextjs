@@ -1,26 +1,31 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { useEffect, useState } from "react";
 import { IconType } from "react-icons";
 
 interface IconProps {
-  icon: IconType,
-  color: string,
-  tip: string,
-  selected?: boolean,
+  id: string;
+  icon: IconType;
+  color: string;
+  priority?: string;
   onClick: () => void
 }
 
 const Icon = ({
+  id,
   icon: Icon,
   color,
-  tip,
   onClick,
-  selected,
+  priority,
 }: IconProps) => {
+  console.log("priority", priority)
+  const [selected, setSelected] = useState(false)
+
+  useEffect(() => {
+    if(priority === id){
+      setSelected(true)
+    }else{
+      setSelected(false)
+    }
+  },[id, priority])
 
   const clicked = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
