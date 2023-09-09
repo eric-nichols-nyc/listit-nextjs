@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ToastContainer
           position="bottom-left"
-          autoClose={5000}
+          autoClose={1500}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick

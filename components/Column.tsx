@@ -89,7 +89,12 @@ const Column = () => {
 
   return (
     <div>
-      <div className="px-2">
+      <div className="
+       mycolumn
+        w-[350px] 
+        pr-2 
+        h-full
+      ">
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result)}
         >

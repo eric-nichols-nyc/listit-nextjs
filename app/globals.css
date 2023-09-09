@@ -74,12 +74,16 @@
     @apply bg-background text-foreground;
   }
 }
-.maincontent{
+/* .maincontent{
   height: calc(100vh - 64px);
-}
+} */
 .columncontainer{
-  height: calc(100vh - 200px);
+  max-height: calc(100vh - 100px);
 }
 .rightcontent{
   width: calc(100vw - 320px)
+}
+.mycolumn{
+  max-height: calc(100vh - 230px);
+  overflow-y: scroll;
 }

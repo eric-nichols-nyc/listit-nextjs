@@ -12,20 +12,19 @@ export default function Home() {
         flex 
         flex-col 
         px-16
-        py-8
-        bg-gray-300
+        pt-8
       "
     >
       <Header />
-      <div className="flex ">
-        <div className="w-[350px] relative">
-          <div className="flex relative border-b ">Sep 5 - Today 8</div>
+      <div className="flex">
+        <div className="w-full relative">
+          <div className="flex relative">Sep 5 - Today 8</div>
           <div
-            className={`relative columncontainer w-full overflow-y-scroll pb-16`}
-            style={{ maxHeight: maxH }}>
+            className={`relative columncontainer w-full overflow-y-scroll pt-5`}
+            style={{ maxHeight: 'none' }}>
             <Column />
           </div>
-          <div className="absolute bottom-[0px]">
+          <div>
             <ColumnFooter />
           </div>
         </div>
