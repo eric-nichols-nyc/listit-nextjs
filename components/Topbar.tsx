@@ -8,7 +8,7 @@ import { MdOutlineAdd } from 'react-icons/md'
 import PopOver from "./Popover"
 import TaskForm from "./TaskForm"
 import { useTaskStore } from "@/store/taskStore"
-
+import AccountDropdown from "./AccountDropdown";
 const Header = () => {
   const [tasks, addTask] = useTaskStore(state => [state.tasks, state.addTask])
   return (
@@ -46,11 +46,7 @@ const Header = () => {
           />
         </div>
         <div>
-          <RxAvatar
-            className="cursor-pointer"
-            size={IconSize}
-            color="white"
-          />
+          <AccountDropdown />
         </div>
       </div>
     </div>
