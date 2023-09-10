@@ -15,11 +15,13 @@ const Header = () => {
     <div>
       <div
         className="
-      flex
-      justify-between
-      items-center
-      p-3
-      bg-red-500
+        topbar
+        flex
+        justify-between
+        items-center
+        px-3
+        py-1
+        bg-red-500
       ">
         <div className="flex flex-1 gap-2 items-center">
           <GiHamburgerMenu

@@ -7,6 +7,7 @@ import {
   LogOut,
   Mail,
   MessageSquare,
+  Palette,
   Plus,
   PlusCircle,
   Settings,
@@ -55,19 +56,14 @@ export default function DropdownMenuDemo() {
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
+            <Palette className="mr-2 h-4 w-4" />
+            <span>Theme</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Keyboard className="mr-2 h-4 w-4" />
-            <span>Keyboard shortcuts</span>
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -113,10 +109,6 @@ export default function DropdownMenuDemo() {
         <DropdownMenuItem>
           <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem disabled>
-          <Cloud className="mr-2 h-4 w-4" />
-          <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

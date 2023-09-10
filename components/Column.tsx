@@ -4,60 +4,10 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import ListTask from './ListTask';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import { useTaskStore } from '@/store/taskStore';
-import { toast } from 'react-toastify';
-
-const items = [
-  {
-    id: '1',
-    name: 'task 1',
-    order: 'c',
-    description: 'This is my task description'
-  },
-  {
-    id: '2',
-    name: 'task 2',
-    order: 'f',
-    description: 'This is my task description'
-  },
-  {
-    id: '3',
-    name: 'task 3',
-    order: 'h',
-    description: 'This is my task description'
-  },
-  {
-    id: '4',
-    name: 'task 4',
-    order: 'k',
-    description: 'This is my task description'
-  },
-  {
-    id: '5',
-    name: 'task 5',
-    order: 'm',
-    description: 'This is my task description'
-  },
-  {
-    id: '6',
-    name: 'task 6',
-    order: 'p',
-    description: 'This is my task description'
-  },
-  {
-    id: '7',
-    name: 'task 7',
-    order: 'r',
-    description: 'This is my task description'
-  },
-  {
-    id: '8',
-    name: 'task 8',
-    order: 'v'
-  }
-]
+import { items } from '@/constants';
 
 const Column = () => {
-  const [tasks, setTasks, addTask, removeTask, updateTask] = useTaskStore(state =>
+  const [tasks, setTasks] = useTaskStore(state =>
     [
       state.tasks,
       state.setTasks,

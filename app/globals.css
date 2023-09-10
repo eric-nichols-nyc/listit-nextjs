@@ -74,9 +74,9 @@
     @apply bg-background text-foreground;
   }
 }
-/* .maincontent{
+.maincontent{
   height: calc(100vh - 64px);
-} */
+} 
 .columncontainer{
   max-height: calc(100vh - 100px);
 }
@@ -84,6 +84,6 @@
   width: calc(100vw - 320px)
 }
 .mycolumn{
-  max-height: calc(100vh - 230px);
+  max-height: calc(100vh - 250px);
   overflow-y: scroll;
 }

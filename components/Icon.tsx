@@ -16,7 +16,6 @@ const Icon = ({
   onClick,
   priority,
 }: IconProps) => {
-  console.log("priority", priority)
   const [selected, setSelected] = useState(false)
 
   useEffect(() => {

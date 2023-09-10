@@ -3,7 +3,46 @@ import { BsFlagFill, BsSun } from 'react-icons/bs';
 import { GrSchedule } from 'react-icons/gr';
 import { MdOutlineSchedule } from 'react-icons/md';
 
-export const IconSize = 30;
+export const IconSize = 24;
+
+export const items = [
+  {
+    id: '1',
+    name: 'task 1',
+    order: 'c',
+    description: 'This is my task description',
+  },
+  {
+    id: '2',
+    name: 'task 2',
+    order: 'f',
+    description: 'This is my task description',
+  },
+  {
+    id: '3',
+    name: 'task 3',
+    order: 'h',
+    description: 'This is my task description',
+  },
+  {
+    id: '4',
+    name: 'task 4',
+    order: 'm',
+    description: 'This is my task description',
+  },
+  {
+    id: '5',
+    name: 'task 5',
+    order: 'p',
+    description: 'This is my task description',
+  },
+  {
+    id: '6',
+    name: 'task 6',
+    order: 'v',
+  },
+];
+
 
 export const taskData = [
   {
@@ -40,7 +79,13 @@ export const taskData = [
     title: 'Priority',
     icon: [
       {
-        id:'low',
+        id: 'none',
+        name: BsFlagFill,
+        color: 'gray',
+        priority: 'none',
+      },
+      {
+        id: 'low',
         name: BsFlagFill,
         color: 'blue',
         priority: 'low',

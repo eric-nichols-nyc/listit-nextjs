@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { GrAdd } from 'react-icons/gr'
+import { AiOutlinePlus } from 'react-icons/ai'
 import {
   Card,
   CardContent,
@@ -52,16 +52,20 @@ const AddtaskForm = () => {
   return (
     <div className="
     border-t-2
-    w-[350px] 
+    w-[342px] 
     p-2 
     flex 
     items-center 
     cursor-pointer 
+    text-gray-400
     hover:text-red-600 
+    hover:color-red-600
     bg-white
+    relative
     ">
       {
         showForm ? (
+          <div className="absolute bottom-0 left-0">
           <Card>
             <CardHeader className="pt-2" />
             <CardContent>
@@ -95,13 +99,14 @@ const AddtaskForm = () => {
               </div>
             </CardFooter>
           </Card>
+          </div>
         )
           :
           <div 
             onClick={() => setShowForm(true)}
-            className='flex items-center cursor-pointer'
+            className=' flex items-center cursor-pointer'
           >
-            <GrAdd className="inline-block mr-2" />
+            <AiOutlinePlus className="inline-block mr-2" />
             <div>
               Add task
             </div>
