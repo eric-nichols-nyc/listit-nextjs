@@ -24,10 +24,10 @@ import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 
 const borders = {
-  'none': 'border-gray-500',
-  'low': 'border-gray-500',
-  'medium': 'border-gray-300',
-  'high': 'border-gray-500',
+  'none': 'border-gray-400',
+  'low': 'border-blue-500',
+  'medium': 'border-orange-300',
+  'high': 'border-red-500',
 }
 
 // and send in props
@@ -64,7 +64,7 @@ const Task = ({
       case 'none':
         return borders.none
       default:
-        return borders.none
+        return borders.low
     }
   }
   // duplicate task
@@ -81,9 +81,7 @@ const Task = ({
 
   // change color of checkbox border
   useEffect(() => {
-    console.log('priority', priority)
     setCheckColor(getColor())
-    console.log(checkcolor)
   },[priority])
 
   const onClose = () => {

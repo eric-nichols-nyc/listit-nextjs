@@ -34,7 +34,7 @@ const Header = () => {
           />
           <Input
             disabled
-            className="mr-3 w-[300px]"
+            className="mr-3 w-[300px] h-[2rem]"
             placeholder="Search"
           />
         </div>

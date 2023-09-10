@@ -15,7 +15,7 @@ const Header = () => {
           <span className="text-sm">{format(new Date(), 'eee-MMM-dd')}</span>
         </div>
         <Dropdown
-          label={'view'}
+          label={'View'}
           name={'Layout'}
           items={[]}
          />
