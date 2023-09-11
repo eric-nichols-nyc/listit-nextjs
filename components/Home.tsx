@@ -31,7 +31,7 @@ export default function Home() {
             <ColumnFooter />
           </div>
         </div>
-        <div className="pt-6">
+        <div className="pt-10">
           <Calendar />
         </div>
       </div>

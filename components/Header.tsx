@@ -14,11 +14,6 @@ const Header = () => {
           <span className="font-semibold text-lg">Today </span>
           <span className="text-sm">{format(new Date(), 'eee-MMM-dd')}</span>
         </div>
-        <Dropdown
-          label={'View'}
-          name={'Layout'}
-          items={[]}
-         />
       </div>
     </div>
   )

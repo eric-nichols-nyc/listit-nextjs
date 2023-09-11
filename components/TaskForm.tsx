@@ -31,7 +31,6 @@ const TaskForm = ({
   disable = true,
   onClose
 }:TaskFormProps) => {
-  console.log(onSubmit)
 
   // local state
   const [task, setTask] = useState({

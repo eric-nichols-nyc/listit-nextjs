@@ -119,9 +119,10 @@ const Task = ({
 
   const updateCurrentTask = (name: string, description: string) => {
     const t = {
-      id: id,
-      name: name,
-      description: description,
+      id,
+      name,
+      description,
+      duedate
     }
     updateTask(id, t)
     setShowForm(false)
