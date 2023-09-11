@@ -4,6 +4,7 @@ import ColumnFooter from '@/components/AddTaskForm'
 import Header from '@/components/Header';
 import { useTaskStore } from '@/store/taskStore';
 import {format} from 'date-fns'
+import { Calendar } from './ui/calendar';
 
 export default function Home() {
   const [tasks] = useTaskStore(state => [state.tasks, state.addTask])
@@ -29,6 +30,9 @@ export default function Home() {
           <div>
             <ColumnFooter />
           </div>
+        </div>
+        <div className="pt-6">
+          <Calendar />
         </div>
       </div>
     </div>

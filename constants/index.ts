@@ -1,4 +1,4 @@
-import { AiOutlineEdit, AiOutlineCopy, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineEdit, AiOutlineCopy, AiOutlineDelete, AiOutlineCalendar } from 'react-icons/ai';
 import { BsFlagFill, BsSun } from 'react-icons/bs';
 import { GrSchedule } from 'react-icons/gr';
 import { MdOutlineSchedule } from 'react-icons/md';
@@ -11,35 +11,28 @@ export const items = [
     name: 'task 1',
     order: 'c',
     description: 'This is my task description',
+    duedate: new Date(),
   },
   {
     id: '2',
     name: 'task 2',
     order: 'f',
     description: 'This is my task description',
+    duedate: new Date(),
   },
   {
     id: '3',
     name: 'task 3',
     order: 'h',
     description: 'This is my task description',
+    duedate: new Date(),
   },
   {
     id: '4',
     name: 'task 4',
     order: 'm',
     description: 'This is my task description',
-  },
-  {
-    id: '5',
-    name: 'task 5',
-    order: 'p',
-    description: 'This is my task description',
-  },
-  {
-    id: '6',
-    name: 'task 6',
-    order: 'v',
+    duedate: new Date(),
   },
 ];
 
@@ -53,25 +46,9 @@ export const taskData = [
   },
   {
     id: 'duedate',
-    type: 'icons',
+    type: 'button',
     title: 'Due Date',
-    icon: [
-      {
-        name: MdOutlineSchedule,
-        color: 'red',
-        tip: 'Today',
-      },
-      {
-        name: BsSun,
-        color: 'orange',
-        tip: 'Tomorrow',
-      },
-      {
-        name: GrSchedule,
-        color: 'red',
-        tip: 'Next week',
-      },
-    ],
+    icon: AiOutlineCalendar,
   },
   {
     id: 'priority',

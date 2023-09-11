@@ -41,7 +41,7 @@ const Column = () => {
     <div>
       <div className="
        mycolumn
-        w-[350px] 
+        w-full 
         pr-2 
         h-full
       ">
@@ -63,6 +63,7 @@ const Column = () => {
                           key={item.id}
                           name={item.name}
                           description={item.description}
+                          duedate={item.duedate}
                           order={item.order}
                           innerRef={provided.innerRef}
                           draggableProps={provided.draggableProps}

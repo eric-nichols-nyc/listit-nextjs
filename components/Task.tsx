@@ -22,6 +22,8 @@ import Icon from '@/components/Icon';
 import { taskData } from '@/constants';
 import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
+import Calendar from './Calendar';
+import DatePickerDemo from './DatePicker';
 
 const borders = {
   'none': 'border-gray-400',
@@ -36,6 +38,7 @@ const Task = ({
   name,
   description,
   innerRef,
+  duedate,
   draggableProps,
   draggableHandleProps,
 }: Task) => {
@@ -84,8 +87,34 @@ const Task = ({
     setCheckColor(getColor())
   },[priority])
 
+  // change color of checkbox border
+  useEffect(() => {
+    if(!duedate){
+      const date = new Date();
+      const t = {
+        id,
+        name,
+        description,
+        duedate: date,
+      }
+
+      updateTask(id, t)
+
+    }
+  }, [])
+
   const onClose = () => {
     setShowForm(false)
+  }
+
+  const onDateChanged = (duedate: Date) => {
+    const t = {
+      id,
+      name,
+      description,
+      duedate,
+    }
+    updateTask(id, t)
   }
 
   const updateCurrentTask = (name: string, description: string) => {
@@ -124,6 +153,12 @@ const Task = ({
 
   const bodycontent = taskData.map((item, index) => {
     if (item.type === 'button') {
+      if(item.id === 'duedate') return (
+      <div key={item.id} className="border-b">
+        <DatePickerDemo 
+          onSelected={onDateChanged}
+        />
+      </div>)
       return (<LIButton
         key={item.id}
         id={item.id}
@@ -226,7 +261,7 @@ const Task = ({
                 size={14}
               />
               <div className="ml-1">
-                Today
+                {duedate ? duedate.toDateString() : 'No due date'}
               </div>
             </div>
           </div>
