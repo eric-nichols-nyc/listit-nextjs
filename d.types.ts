@@ -3,7 +3,7 @@ interface Task {
   name: string;
   description?: string;
   duedate?: any;
-  order?: string;
+  order: string;
   innerRef?: any;
   draggableProps?: any;
   draggableHandleProps?: any;

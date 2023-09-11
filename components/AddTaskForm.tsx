@@ -42,8 +42,10 @@ const AddtaskForm = () => {
       id: (tasks.length + 1).toString(),
       name: task.name,
       description: task.description,
+      duedate: new Date(),
       order: getNewCardOrder(tasks, tasks.length-1, tasks.length)!,
     }
+    console.log(' t = ',t)
     addTask(t)
     setShowForm(false)
     toast("1 task added to today");

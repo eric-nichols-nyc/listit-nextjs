@@ -105,7 +105,7 @@ export const getNewCardOrder = (
   // console.log('destinationIndex = ', destinationIndex);
   // console.log('items = ', items.length);
   // if position is first, get point between first and second
-  let newOrder;
+  let newOrder = undefined;
   if (!items.length) {
     return midString('', 'a');
   }

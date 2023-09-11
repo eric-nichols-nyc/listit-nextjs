@@ -22,7 +22,6 @@ import Icon from '@/components/Icon';
 import { taskData } from '@/constants';
 import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
-import Calendar from './Calendar';
 import DatePickerDemo from './DatePicker';
 
 const borders = {
@@ -39,6 +38,7 @@ const Task = ({
   description,
   innerRef,
   duedate,
+  order,
   draggableProps,
   draggableHandleProps,
 }: Task) => {
@@ -82,26 +82,14 @@ const Task = ({
     toast("Task duplicated");
   }
 
+  useEffect(() => {
+    console.log('tasks ', tasks)
+  }, [tasks])
+
   // change color of checkbox border
   useEffect(() => {
     setCheckColor(getColor())
   },[priority])
-
-  // change color of checkbox border
-  useEffect(() => {
-    if(!duedate){
-      const date = new Date();
-      const t = {
-        id,
-        name,
-        description,
-        duedate: date,
-      }
-
-      updateTask(id, t)
-
-    }
-  }, [])
 
   const onClose = () => {
     setShowForm(false)
@@ -113,6 +101,7 @@ const Task = ({
       name,
       description,
       duedate,
+      order
     }
     updateTask(id, t)
   }
@@ -122,7 +111,8 @@ const Task = ({
       id,
       name,
       description,
-      duedate
+      duedate,
+      order
     }
     updateTask(id, t)
     setShowForm(false)
