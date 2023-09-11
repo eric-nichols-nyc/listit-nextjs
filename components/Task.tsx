@@ -172,7 +172,7 @@ const Task = ({
       key={index}
       className="py-1 border-b"
       >
-        <div className="flex flex-col text-sm">
+        <div className="flex flex-col text-sm ">
           <div className="text-xs">{item.title}</div>
           <div className="flex">
             {
@@ -253,7 +253,7 @@ const Task = ({
             onClick={(e) => gotoTask(e)}
             className="flex flex-col ml-2">
             {name}
-            <div className="text-sm">
+            <div className="text-xs pb-2">
               {description}
             </div>
             <div className="flex  text-xs">

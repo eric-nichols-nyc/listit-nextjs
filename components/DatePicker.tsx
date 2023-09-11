@@ -17,7 +17,7 @@ interface DatePickerProps {
   date?: Date
   onSelected: (date: Date) => void
 }
-
+// Component to select a date for a task
 export default function DatePickerDemo({
   onSelected,
 }: DatePickerProps) {
@@ -26,13 +26,6 @@ export default function DatePickerDemo({
   React.useEffect(() => {
     if (date) onSelected(date)
   }, [date])
-
-
-  const onSetDate = (date: Date) => {
-    console.log(date)
-    setDate(date)
-    onSelected(date)
-  }
 
   return (
     <div>

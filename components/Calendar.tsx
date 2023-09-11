@@ -1,9 +1,9 @@
-import React from 'react'
+import { Calendar } from './ui/calendar';
 
-const Calendar = () => {
+const CalendarComponent = () => {
   return (
-    <div>Calendar</div>
+    <Calendar />
   )
 }
 
-export default Calendar
+export default CalendarComponent

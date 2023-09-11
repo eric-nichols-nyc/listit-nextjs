@@ -27,7 +27,7 @@ export const Sidenav = () => {
           <Button className="w-full gap-2 justify-between" variant="outline">
             <div className="flex items-center gap-2">
               <MdOutlineCalendarToday />
-              <div>Today</div>
+              <div>Tasks</div>
             </div>
 
             <div>{tasks.length}</div>
