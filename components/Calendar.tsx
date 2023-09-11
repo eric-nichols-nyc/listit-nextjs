@@ -35,7 +35,7 @@ const CalendarComponent = () => {
   }, [tasks, getUniqueDates])
 
   return (
-    <div className=" border-2 bg-gray-100">
+    <div className=" border bg-gray-100">
       <Calendar
         className="bg-white"
         mode="multiple"
@@ -53,6 +53,7 @@ const CalendarComponent = () => {
             gap-2 
             items-center
             bg-white
+            shadow-md
             "
           >
             <Checkbox />

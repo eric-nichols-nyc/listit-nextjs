@@ -8,7 +8,7 @@ export const Sidenav = () => {
     <div
     className="
     w-[320px]
-    bg-gray-100
+    bg-slate-200
     pt-8
     "
     >

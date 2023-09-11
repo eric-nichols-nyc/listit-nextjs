@@ -19,7 +19,7 @@ export default function Home() {
       "
     >
       <Header />
-      <div className="flex">
+      <div className="flex gap-6">
         <div className="w-full relative">
           <div className="flex relative text-sm font-semibold">{format(new Date(), 'MMM-dd')} - Today ({tasks.length})</div>
           <div

@@ -74,6 +74,7 @@
     @apply bg-background text-foreground;
   }
 }
+
 .maincontent{
   height: calc(100vh - 64px);
 } 

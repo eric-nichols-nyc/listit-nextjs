@@ -36,7 +36,7 @@ export default function RootLayout({
           theme="dark"
         />
         <Topbar />
-        <div className="flex maincontent">
+        <div className="flex maincontent bg-slate-100">
           <Sidenav />
           <div>
             <Home />
