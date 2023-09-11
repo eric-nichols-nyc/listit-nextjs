@@ -34,10 +34,10 @@ const Header = () => {
             placeholder="Search"
           />
         </div>
-        <div className="flex-1 justify-center">
+        {/* <div className="flex-1 justify-center">
             <AddTaskDropdown
             />
-        </div>
+        </div> */}
         <div className="flex-1 items-end">
           <AccountDropdown />
         </div>
