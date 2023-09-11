@@ -28,7 +28,7 @@ const PopOver = ({
           Icon && (
             <Icon
               className="cursor-pointer"
-              size={30}
+              size={20}
             />
           )
         }
