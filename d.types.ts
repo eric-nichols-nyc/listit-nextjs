@@ -2,7 +2,7 @@ interface Task {
   id: string;
   name: string;
   description?: string;
-  duedate?: Date;
+  duedate?: any;
   order?: string;
   innerRef?: any;
   draggableProps?: any;

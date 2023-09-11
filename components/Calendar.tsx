@@ -5,22 +5,19 @@ import { set } from 'date-fns';
 
 const CalendarComponent = () => {
   const tasks = useTaskStore(state => state.tasks)
-  console.log('tasks from calendar = ', tasks)
-  const dates = tasks.map(task => task.duedate?.toISOString())
-  const unique = new Set(dates)
-  console.log('dates = ', Array.from(unique))
+  
+  // return unique dates from tasks
+  const getUniqueDates = ():Date[] => {
+    const dates = tasks.map(task => task.duedate)
+    const unique = Array.from(new Set(dates))
+    return unique.map(d => new Date(d))
+  }
 
-  const [selectedDays, setSelectedDays] = useState<Date[]>(
-    dates.map(d => new Date(d))
-  );
+  const [selectedDays, setSelectedDays] = useState<Date[]>(getUniqueDates());
 
+  // refresh calendar when tasks change
   useEffect(() => {
-    console.log('selectedDays = ',selectedDays)
-  }, [selectedDays])
-
-  useEffect(() => {
-    const dates = tasks.map(task => task.duedate?.toISOString())
-    setSelectedDays(dates.map(d => new Date(d)))
+    setSelectedDays(getUniqueDates())
   }, [tasks])
   
   return (
