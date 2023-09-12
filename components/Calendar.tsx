@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Calendar } from './ui/calendar';
 import { useTaskStore } from '@/store/taskStore';
-import Task from './Task';
 import { Checkbox } from './ui/checkbox';
+import { toast } from 'react-toastify';
+import { set } from 'date-fns';
 
 // Calendar component dynamically and reflects the dates of tasks
 const CalendarComponent = () => {
-  const tasks = useTaskStore(state => state.tasks)
+  const [tasks, removeTask] = useTaskStore(state => [state.tasks, state.removeTask])
 
   // return unique dates from tasks
   const getUniqueDates = useCallback((): Date[] => {
@@ -16,23 +17,24 @@ const CalendarComponent = () => {
   }, [tasks])
 
   // get items to show for this day
-  const getItemsForDay = (day: Date) => {
+  const getItemsForDay = useCallback((day: Date) => {
+    setSelectedDate(day)
     const substring = day.toISOString().substring(0, 10)
     const list = tasks.filter(task => task.duedate.toISOString().substring(0, 10) === substring)
     const unique = Array.from(new Set(list))
     setFilteredDays(unique)
-  }
+  },[tasks]);
 
   const [selectedDays, setSelectedDays] = useState<Date[]>(getUniqueDates());
-  const [filteredDays, setFilteredDays] = useState<any[]>([])
-  useEffect(() => {
-    setFilteredDays([] as any[])
-  }, [selectedDays])
+  const [filteredDays, setFilteredDays] = useState<any[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>()
 
   // refresh calendar when tasks change
   useEffect(() => {
     setSelectedDays(getUniqueDates())
-  }, [tasks, getUniqueDates])
+    if(selectedDate) getItemsForDay(selectedDate)
+  }, [tasks, getUniqueDates, selectedDate,getItemsForDay])
+  
 
   return (
     <div className=" border-2 bg-gray-100">
@@ -55,7 +57,14 @@ const CalendarComponent = () => {
             bg-white
             "
           >
-            <Checkbox />
+            <Checkbox
+              onCheckedChange={() => {
+                setTimeout(() => {
+                  toast("1 task completed");
+                  removeTask(day.id)
+                }, 300)
+              }}
+            />
             <div>
               <div className="text-sm">{day.name}</div>
               <div className='text-xs'>{day.duedate.toDateString()}</div>
