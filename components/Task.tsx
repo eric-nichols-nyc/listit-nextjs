@@ -134,12 +134,6 @@ const Task = ({
       default:
         break;
     }
-    if (name === 'edit') {
-      setShowForm(true)
-    } else if (name === 'delete') {
-      removeTask(id)
-      toast("1 task deleted");
-    }
   }
 
   const bodycontent = taskData.map((item, index) => {
