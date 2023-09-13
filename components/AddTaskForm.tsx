@@ -53,6 +53,7 @@ const AddtaskForm = () => {
       name: task.name,
       description: task.description,
       duedate: new Date(),
+      priority: "low",
       order: getNewCardOrder(tasks, tasks.length-1, tasks.length)!,
     }
     addTask(t)
@@ -110,9 +111,10 @@ const AddtaskForm = () => {
             <hr />
             <CardFooter>
               <div className="flex pt-2 gap-2">
-                <Button variant="secondary">
+                <Button 
+                  onClick={() => setShowForm(false)}
+                  variant="secondary">
                   <AiOutlineClose
-                   onClick={() => setShowForm(false)}
                    />
                 </Button>
                 <Button 

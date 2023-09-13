@@ -25,7 +25,6 @@ import { getNewCardOrder } from '@/utils/getItemOrder';
 import DatePickerDemo from './DatePicker';
 
 const borders = {
-  'none': 'border-gray-400',
   'low': 'border-blue-500',
   'medium': 'border-orange-300',
   'high': 'border-red-500',
@@ -36,6 +35,7 @@ const Task = ({
   id,
   name,
   description,
+  priority,
   innerRef,
   duedate,
   order,
@@ -53,8 +53,8 @@ const Task = ({
 
   // local state
   const [showForm, setShowForm] = useState<boolean>(false)
-  const [priority, setPriority] = useState<string>('none')
-  const [checkcolor, setCheckColor] = useState<string>(borders.none)
+  const [taskPriority, setTaskPriority] = useState<string>(priority)
+  const [checkcolor, setCheckColor] = useState<string>(borders.low)
 
   const getColor = () => {
     switch(priority){
@@ -64,18 +64,18 @@ const Task = ({
         return borders.medium
       case 'low':
         return borders.low
-      case 'none':
-        return borders.none
       default:
-        return borders.low
+        console.error('Priority not found')
+        return ''
     }
   }
   // duplicate task
   const duplicate = () => {
     const t = {
       id: (tasks.length + 1).toString(),
-      name: name,
-      description: description,
+      name,
+      description,
+      priority,
       order: getNewCardOrder(tasks, tasks.length - 1, tasks.length)!,
     }
     addTask(t)
@@ -89,30 +89,32 @@ const Task = ({
   // change color of checkbox border
   useEffect(() => {
     setCheckColor(getColor())
-  },[priority])
+  }, [taskPriority])
 
   const onClose = () => {
     setShowForm(false)
   }
 
   const onDateChanged = (duedate: Date) => {
-    const t = {
+    const t:Task = {
       id,
       name,
       description,
       duedate,
-      order
+      order,
+      priority
     }
     updateTask(id, t)
   }
 
   const updateCurrentTask = (name: string, description: string) => {
-    const t = {
+    const t:Task = {
       id,
       name,
       description,
       duedate,
-      order
+      order,
+      priority
     }
     updateTask(id, t)
     setShowForm(false)
@@ -173,7 +175,7 @@ const Task = ({
                           color={ic.color}
                           priority={priority}
                           onClick={() => {
-                            setPriority(ic.priority)
+                            setTaskPriority(ic.priority)
                           }}
                         />      
                       </TooltipTrigger>

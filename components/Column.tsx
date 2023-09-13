@@ -65,6 +65,7 @@ const Column = () => {
                           description={item.description}
                           duedate={item.duedate}
                           order={item.order}
+                          priority={item.priority}
                           innerRef={provided.innerRef}
                           draggableProps={provided.draggableProps}
                           draggableHandleProps={provided.dragHandleProps}
