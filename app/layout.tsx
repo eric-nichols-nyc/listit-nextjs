@@ -37,9 +37,7 @@ export default function RootLayout({
         />
         <Topbar />
         <div className="flex maincontent bg-slate-100">
-          <Sidenav />
           <div>
-            <Home />
             {children}
           </div>
         </div>

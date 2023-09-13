@@ -82,7 +82,8 @@
   max-height: calc(100vh - 100px);
 }
 .rightcontent{
-  width: calc(100vw - 320px)
+  width: calc(100vw - 320px);
+  margin-left: 300px;
 }
 .mycolumn{
   max-height: calc(100vh - 250px);

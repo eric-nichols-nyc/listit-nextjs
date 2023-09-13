@@ -1,40 +1,26 @@
 import {
-  Cloud,
-  CreditCard,
   Github,
-  Keyboard,
-  LifeBuoy,
   LogOut,
-  Mail,
-  MessageSquare,
   Palette,
-  Plus,
-  PlusCircle,
   Settings,
   User,
-  UserPlus,
-  Users,
 } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { RxAvatar } from 'react-icons/rx'
 import { IconSize } from "@/constants"
 
 export default function DropdownMenuDemo() {
+  const router = useRouter();
   return (
     <div className="w-full flex justify-end">
       <DropdownMenu>
@@ -69,51 +55,19 @@ export default function DropdownMenuDemo() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <Users className="mr-2 h-4 w-4" />
-              <span>Team</span>
-            </DropdownMenuItem>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
-                <UserPlus className="mr-2 h-4 w-4" />
-                <span>Invite users</span>
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                  <DropdownMenuItem>
-                    <Mail className="mr-2 h-4 w-4" />
-                    <span>Email</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    <span>Message</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    <span>More...</span>
-                  </DropdownMenuItem>
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-            <DropdownMenuItem>
-              <Plus className="mr-2 h-4 w-4" />
-              <span>New Team</span>
-              <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Github className="mr-2 h-4 w-4" />
             <span>GitHub</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <LifeBuoy className="mr-2 h-4 w-4" />
-            <span>Support</span>
-          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <LogOut className="mr-2 h-4 w-4" />
+          <DropdownMenuItem 
+          className="cursor-pointer"
+            onClick={() => router.push('/')}
+          >
+            <LogOut 
+            className="mr-2 h-4 w-4" />
             <span>Log out</span>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
