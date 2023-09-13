@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, ChangeEvent, use } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai'
 import {
   Card,
@@ -12,8 +12,10 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useTaskStore } from '@/store/taskStore';
 import {getNewCardOrder} from '@/utils/getItemOrder'
 import { toast } from 'react-toastify';
+import { set } from 'date-fns';
 
 const AddtaskForm = () => {
+  const ref = useRef<HTMLInputElement>(null)
   const [tasks, addTask] = useTaskStore(state => [
     state.tasks,
     state.addTask,
@@ -34,9 +36,17 @@ const AddtaskForm = () => {
       setDisabled(true)
     }
   }, [task.name])
+
+  // focus on input when form is shown
+  useEffect(() => {
+    if(showForm) {
+      ref.current?.focus()
+    }
+  }, [showForm])
   
 
   const onSubmit = () => {
+    if(task.name.length === 0) return
     let t:Task;
     t = { 
       id: (tasks.length + 1).toString(),
@@ -45,25 +55,24 @@ const AddtaskForm = () => {
       duedate: new Date(),
       order: getNewCardOrder(tasks, tasks.length-1, tasks.length)!,
     }
-    console.log(' t = ',t)
     addTask(t)
+    setTask({name: '', description: ''})
     setShowForm(false)
     toast("1 task added to today");
   }
 
   return (
     <div className="
-    border-t-2
-    w-[342px] 
-    p-2 
-    flex 
-    items-center 
-    cursor-pointer 
-    text-gray-400
-    hover:text-red-600 
-    hover:color-red-600
-    bg-white
-    relative
+      w-[342px] 
+      p-2 
+      flex 
+      items-center 
+      cursor-pointer 
+      text-gray-400
+      hover:text-red-600 
+      hover:color-red-600
+      bg-transparent
+      relative
     ">
       {
         showForm ? (
@@ -72,16 +81,29 @@ const AddtaskForm = () => {
             <CardHeader className="pt-2" />
             <CardContent>
               <div>
+                {/* name */}
                 <input
+                  ref={ref}
                   type="text"
                   className="border border-gray-200 p-2 w-full text-sm"
                   placeholder="Task name"
                   onChange={(e) => setTask({ ...task, name: e.target.value })}
+                  onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        onSubmit()
+                      }
+                    }}
                 />
+                {/* description */}
                 <textarea
                   className="border border-gray-200 p-2 w-full text-sm mt-2"
                   placeholder="Description..."
                   onChange={(e) => setTask({ ...task, description: e.target.value })}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        onSubmit()
+                      }
+                    }}
                 />
               </div>
             </CardContent>
@@ -106,7 +128,7 @@ const AddtaskForm = () => {
           :
           <div 
             onClick={() => setShowForm(true)}
-            className=' flex items-center cursor-pointer'
+            className='flex items-center cursor-pointer'
           >
             <AiOutlinePlus className="inline-block mr-2" />
             <div>

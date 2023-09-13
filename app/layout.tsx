@@ -33,7 +33,7 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="dark"
+          theme="light"
         />
         <Topbar />
         <div className="flex maincontent bg-slate-100">

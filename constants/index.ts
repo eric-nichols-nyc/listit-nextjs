@@ -1,7 +1,5 @@
 import { AiOutlineEdit, AiOutlineCopy, AiOutlineDelete, AiOutlineCalendar } from 'react-icons/ai';
 import { BsFlagFill, BsSun } from 'react-icons/bs';
-import { GrSchedule } from 'react-icons/gr';
-import { MdOutlineSchedule } from 'react-icons/md';
 
 export const IconSize = 24;
 
