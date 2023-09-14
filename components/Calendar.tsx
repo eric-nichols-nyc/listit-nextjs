@@ -19,12 +19,13 @@ const CalendarComponent = () => {
 
   // get items to show for this day
   const getItemsForDay = useCallback((day: Date) => {
+    console.log('day ', day)
     setSelectedDate(day)
     const substring = day.toISOString().substring(0, 10)
     const list = tasks.filter(task => task.duedate.toISOString().substring(0, 10) === substring)
     const unique = Array.from(new Set(list))
     setFilteredDays(unique)
-  },[tasks]);
+  }, [tasks]);
 
   const [selectedDays, setSelectedDays] = useState<Date[]>(getUniqueDates());
   const [filteredDays, setFilteredDays] = useState<any[]>([]);
@@ -33,9 +34,12 @@ const CalendarComponent = () => {
   // refresh calendar when tasks change
   useEffect(() => {
     setSelectedDays(getUniqueDates())
-    if(selectedDate) getItemsForDay(selectedDate)
-  }, [tasks, getUniqueDates, selectedDate,getItemsForDay])
-  
+    if (selectedDate) getItemsForDay(selectedDate)
+  }, [tasks, getUniqueDates, selectedDate, getItemsForDay])
+  // refresh calendar when tasks change
+  useEffect(() => {
+    console.log('filteredDays', filteredDays)
+  }, [filteredDays])
 
   return (
     <div className=" border-2 bg-gray-100">

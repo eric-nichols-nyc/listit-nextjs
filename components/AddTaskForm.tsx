@@ -77,7 +77,7 @@ const AddtaskForm = () => {
     ">
       {
         showForm ? (
-          <div className="absolute bottom-0 left-0">
+          <div className="absolute bottom-0 left-0 shadow-lg">
           <Card>
             <CardHeader className="pt-2" />
             <CardContent>

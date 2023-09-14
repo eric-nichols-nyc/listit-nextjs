@@ -32,11 +32,6 @@ const Header = () => {
           path === '/tasks' && (
             <>
               <div className="flex flex-1 gap-2 items-center">
-                <RxHamburgerMenu
-                  className="cursor-pointer"
-                  color="white"
-                  onClick={() => { alert("clicked") }}
-                />
                 <AiOutlineHome
                   className="cursor-pointer"
                   color="white"
