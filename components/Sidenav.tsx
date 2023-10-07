@@ -1,5 +1,5 @@
 "use client";
-import { MdOutlineCalendarToday } from 'react-icons/md'
+import Calendar from '@/components/Calendar';
 import { Button } from './ui/button'
 import { useTaskStore } from '@/store/taskStore';
 import { Input } from './ui/input';
@@ -22,6 +22,9 @@ export const Sidenav = () => {
        bg-gray-900
       "
     >
+      <div className="pt-10">
+        <Calendar />
+      </div>
       <div>
         <Button className="w-full gap-2 justify-between" variant="outline">
           <div className="flex items-center gap-2">

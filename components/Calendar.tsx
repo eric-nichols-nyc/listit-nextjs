@@ -3,8 +3,6 @@ import { Calendar } from './ui/calendar';
 import { useTaskStore } from '@/store/taskStore';
 import { Checkbox } from './ui/checkbox';
 import { toast } from 'react-toastify';
-import { set } from 'date-fns';
-import Chart from './Chart';
 
 // Calendar component dynamically and reflects the dates of tasks
 const CalendarComponent = () => {
@@ -42,7 +40,7 @@ const CalendarComponent = () => {
   }, [filteredDays])
 
   return (
-    <div className=" border-2 bg-gray-100">
+    <div className="border-2 bg-gray-100">
       <Calendar
         className="bg-white"
         mode="multiple"
@@ -78,9 +76,6 @@ const CalendarComponent = () => {
           </div>
         ))}
       </div>
-      <div>
-      </div>
-      <Chart />
     </div>
 
   )

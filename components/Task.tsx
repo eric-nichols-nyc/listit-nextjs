@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react'
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import {
   Card,
   CardContent,
@@ -23,6 +23,7 @@ import { taskData } from '@/constants';
 import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import DatePickerDemo from './DatePicker';
+import { Calendar } from './ui/calendar';
 
 const borders = {
   'low': 'border-blue-500',
@@ -57,7 +58,7 @@ const Task = ({
   const [checkcolor, setCheckColor] = useState<string>(borders.low)
 
   const getColor = () => {
-    switch(priority){
+    switch (priority) {
       case 'high':
         return borders.high
       case 'medium':
@@ -96,7 +97,7 @@ const Task = ({
   }
 
   const onDateChanged = (duedate: Date) => {
-    const t:Task = {
+    const t: Task = {
       id,
       name,
       description,
@@ -108,7 +109,7 @@ const Task = ({
   }
 
   const updateCurrentTask = (name: string, description: string) => {
-    const t:Task = {
+    const t: Task = {
       id,
       name,
       description,
@@ -121,8 +122,8 @@ const Task = ({
     toast("1 task updated");
   }
 
-  const changeTaskByType = (name:string) => {
-    switch(name){
+  const changeTaskByType = (name: string) => {
+    switch (name) {
       case 'edit':
         setShowForm(true)
         break;
@@ -138,14 +139,35 @@ const Task = ({
     }
   }
 
+  const setDate = (date: Date) => {
+    const t: Task = {
+      id,
+      name,
+      description,
+      duedate: date,
+      order,
+      priority
+    }
+    updateTask(id, t)
+  }
+
+  const datepicker = () => (
+    <Calendar
+      mode="single"
+      selected={duedate ? duedate : undefined}
+      onSelect={(e) => setDate(e!)}
+      className="rounded-md"
+    />
+  )
+
   const bodycontent = taskData.map((item, index) => {
     if (item.type === 'button') {
-      if(item.id === 'duedate') return (
-      <div key={item.id} className="border-b">
-        <DatePickerDemo 
-          onSelected={onDateChanged}
-        />
-      </div>)
+      if (item.id === 'duedate') return (
+        <div key={item.id} className="border-b">
+          <DatePickerDemo
+            onSelected={onDateChanged}
+          />
+        </div>)
       return (<LIButton
         key={item.id}
         id={item.id}
@@ -155,42 +177,42 @@ const Task = ({
       />)
     } else {
       return (
-      <div 
-      key={index}
-      className="py-1 border-b"
-      >
-        <div className="flex flex-col text-sm ">
-          <div className="text-xs">{item.title}</div>
-          <div className="flex">
-            {
-              item.icon.map((ic: any) => (
-                <div key={index}>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <Icon
-                          key={ic.tip}
-                          id={ic.id}
-                          icon={ic.name}
-                          color={ic.color}
-                          priority={priority}
-                          onClick={() => {
-                            setTaskPriority(ic.priority)
-                          }}
-                        />      
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        {ic.priority}
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
+        <div
+          key={index}
+          className="task py-1 border-b"
+        >
+          <div className="flex flex-col text-sm ">
+            <div className="text-xs">{item.title}</div>
+            <div className="flex">
+              {
+                item.icon.map((ic: any) => (
+                  <div key={index}>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Icon
+                            key={ic.tip}
+                            id={ic.id}
+                            icon={ic.name}
+                            color={ic.color}
+                            priority={priority}
+                            onClick={() => {
+                              setTaskPriority(ic.priority)
+                            }}
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          {ic.priority}
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
 
-              ))
-            }
+                ))
+              }
+            </div>
           </div>
-        </div>
-      </div>)
+        </div>)
     }
   })
 
@@ -202,7 +224,7 @@ const Task = ({
     onClose={onClose}
   />
 
-  const gotoTask = (e:any) => {
+  const gotoTask = (e: any) => {
     e.stopPropagation()
     router.push(`/task/${id}`)
   }
@@ -236,19 +258,30 @@ const Task = ({
               }, 300)
             }}
           />
-          <div 
-            onClick={(e) => gotoTask(e)}
+          <div
+            // onClick={(e) => gotoTask(e)}
             className="flex flex-col ml-2">
             {name}
             <div className="text-xs pb-2">
               {description}
             </div>
-            <div className="flex  text-xs">
-              <AiOutlineCalendar
-                size={14}
-              />
-              <div className="ml-1">
-                {duedate ? duedate.toDateString() : 'No due date'}
+            <div className="flex gap-2">
+              {/* date and popover */}
+              <div
+                className="due-date flex text-xs relative">
+                <AiOutlineCalendar
+                  size={14}
+                />
+                <div>
+                  <PopOver
+                    text={duedate ? duedate.toDateString() : 'No due date'}
+                    body={datepicker()}
+                  />
+                </div>
+              </div>
+              {/* priority */}
+              <div className="text-sm">
+                priority: {priority}
               </div>
             </div>
           </div>

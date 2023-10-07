@@ -4,7 +4,7 @@ import ColumnFooter from '@/components/AddTaskForm'
 import Header from '@/components/Header';
 import { useTaskStore } from '@/store/taskStore';
 import { format } from 'date-fns'
-import Calendar from '@/components/Calendar';
+import Chart from '@/components/Chart';
 import Sidenav from './Sidenav';
 
 export default function Tasks() {
@@ -35,7 +35,7 @@ export default function Tasks() {
             </div>
           </div>
           <div className="pt-10">
-            <Calendar />
+            <Chart />
           </div>
         </div>
       </div>

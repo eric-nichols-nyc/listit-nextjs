@@ -13,13 +13,13 @@ interface PopoverTriggerProps {
   body: React.ReactElement | React.ReactElement[];
   footer?: React.ReactElement;
   icon?: IconType;
+  text?: string;
 }
 
 const PopOver = ({
-  header,
   body,
-  footer,
   icon: Icon,
+  text,
 }: PopoverTriggerProps) => {
   return (
     <Popover>
@@ -30,6 +30,11 @@ const PopOver = ({
               className="cursor-pointer"
               size={20}
             />
+          )
+        }
+        {
+          text && (
+          text
           )
         }
       </PopoverTrigger>
