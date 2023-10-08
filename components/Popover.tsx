@@ -34,7 +34,7 @@ const PopOver = ({
         }
         {
           text && (
-          text
+          <p>{text}</p>
           )
         }
       </PopoverTrigger>

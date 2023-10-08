@@ -19,7 +19,7 @@ import PopOver from "./Popover";
 import TaskForm from './TaskForm';
 import LIButton from '@/components/Button'
 import Icon from '@/components/Icon';
-import { taskData } from '@/constants';
+import { taskData, priorities } from '@/constants';
 import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import DatePickerDemo from './DatePicker';
@@ -108,6 +108,20 @@ const Task = ({
     updateTask(id, t)
   }
 
+  // update priority
+  const onPriorityChanged = (priority: string) => { 
+    setTaskPriority(priority)
+      const t: Task = {
+      id,
+      name,
+      description,
+      duedate,
+      order,
+      priority
+    }
+    updateTask(id, t)
+  }
+
   const updateCurrentTask = (name: string, description: string) => {
     const t: Task = {
       id,
@@ -160,6 +174,36 @@ const Task = ({
     />
   )
 
+  const prioritypicker = () => (
+    <div className="flex">
+      {
+        priorities.map((priority: any) => (
+          <div key={priority.id}>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Icon
+                    id={priority.id}
+                    icon={priority.name}
+                    color={priority.color}
+                    priority={priority.priority}
+                    onClick={() => {
+                      onPriorityChanged(priority.priority)
+                    }}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  {priority.priority}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+        ))
+      }
+    </div>
+  )
+
   const bodycontent = taskData.map((item, index) => {
     if (item.type === 'button') {
       if (item.id === 'duedate') return (
@@ -191,7 +235,6 @@ const Task = ({
                       <Tooltip>
                         <TooltipTrigger>
                           <Icon
-                            key={ic.tip}
                             id={ic.id}
                             icon={ic.name}
                             color={ic.color}
@@ -280,9 +323,11 @@ const Task = ({
                 </div>
               </div>
               {/* priority */}
-              <div className="text-sm">
-                priority: {priority}
-              </div>
+
+              <PopOver
+                text={`priority: ${priority}`}
+                body={prioritypicker()}
+              />
             </div>
           </div>
         </div>

@@ -1,4 +1,9 @@
-import { AiOutlineEdit, AiOutlineCopy, AiOutlineDelete, AiOutlineCalendar } from 'react-icons/ai';
+import {
+  AiOutlineEdit,
+  AiOutlineCopy,
+  AiOutlineDelete,
+  AiOutlineCalendar,
+} from 'react-icons/ai';
 import { BsFlagFill, BsSun } from 'react-icons/bs';
 
 export const IconSize = 24;
@@ -30,6 +35,26 @@ export const items = [
   },
 ];
 
+export const priorities = [
+  {
+    id: 'low',
+    name: BsFlagFill,
+    color: 'blue',
+    priority: 'low',
+  },
+  {
+    id: 'medium',
+    name: BsFlagFill,
+    color: 'orange',
+    priority: 'medium',
+  },
+  {
+    id: 'high',
+    name: BsFlagFill,
+    color: 'red',
+    priority: 'high',
+  },
+];
 
 export const taskData = [
   {
