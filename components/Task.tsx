@@ -24,6 +24,7 @@ import { TfiMore } from 'react-icons/tfi';
 import { getNewCardOrder } from '@/utils/getItemOrder';
 import DatePickerDemo from './DatePicker';
 import { Calendar } from './ui/calendar';
+import { BsFlagFill } from 'react-icons/bs';
 
 const borders = {
   'low': 'border-blue-500',
@@ -55,9 +56,9 @@ const Task = ({
   // local state
   const [showForm, setShowForm] = useState<boolean>(false)
   const [taskPriority, setTaskPriority] = useState<string>(priority)
-  const [checkcolor, setCheckColor] = useState<string>(borders.low)
+  const [checkcolor, setBorderColor] = useState<string>(borders.low)
 
-  const getColor = () => {
+  const getBorderColor = () => {
     switch (priority) {
       case 'high':
         return borders.high
@@ -70,6 +71,7 @@ const Task = ({
         return ''
     }
   }
+  const getFlagColor = () => priorities.filter((p) => p.id === priority)[0].color
   // duplicate task
   const duplicate = () => {
     const t = {
@@ -89,7 +91,7 @@ const Task = ({
 
   // change color of checkbox border
   useEffect(() => {
-    setCheckColor(getColor())
+    setBorderColor(getBorderColor())
   }, [taskPriority])
 
   const onClose = () => {
@@ -302,7 +304,6 @@ const Task = ({
             }}
           />
           <div
-            // onClick={(e) => gotoTask(e)}
             className="flex flex-col ml-2">
             {name}
             <div className="text-xs pb-2">
@@ -323,10 +324,11 @@ const Task = ({
                 </div>
               </div>
               {/* priority */}
-
               <PopOver
-                text={`priority: ${priority}`}
+                icon={BsFlagFill}
+                color={getFlagColor()}
                 body={prioritypicker()}
+                size={12}
               />
             </div>
           </div>

@@ -22,7 +22,8 @@ export const Sidenav = () => {
        bg-gray-900
       "
     >
-      <div className="pt-10">
+      <div className="pt-10 mb-4">
+        {/* Calendar */}
         <Calendar />
       </div>
       <div>

@@ -13,8 +13,8 @@ export const items = [
     id: '1',
     name: 'task 1',
     order: 'c',
-    priority: 'low',
-    description: 'This is my task 1 description',
+    priority: 'high',
+    description: 'This is an important task',
     duedate: new Date(),
   },
   {
@@ -22,7 +22,7 @@ export const items = [
     name: 'task 2',
     order: 'f',
     priority: 'low',
-    description: 'This is my task 2 description',
+    description: 'This is my next task',
     duedate: new Date(),
   },
   {
@@ -30,7 +30,7 @@ export const items = [
     name: 'task 3',
     order: 'h',
     priority: 'low',
-    description: 'This is my task 3 description',
+    description: 'This is a third task',
     duedate: new Date(),
   },
 ];

@@ -14,12 +14,16 @@ interface PopoverTriggerProps {
   footer?: React.ReactElement;
   icon?: IconType;
   text?: string;
+  color?: string;
+  size?:number;
 }
 
 const PopOver = ({
   body,
   icon: Icon,
   text,
+  color = 'black',
+  size= 20
 }: PopoverTriggerProps) => {
   return (
     <Popover>
@@ -28,13 +32,14 @@ const PopOver = ({
           Icon && (
             <Icon
               className="cursor-pointer"
-              size={20}
+              size={size}
+              color={color}
             />
           )
         }
         {
           text && (
-          <p>{text}</p>
+          <p className="text-[12px]">{text}</p>
           )
         }
       </PopoverTrigger>
